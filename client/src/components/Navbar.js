@@ -35,7 +35,7 @@ const AuthNav = ({ handleSignout }) => (
 const UnAuthNav = () => (
 <div>
   <Navbar class="navbar" light expand="md">
-    <NavbarBrand href="/">Puhcho Toys</NavbarBrand>
+    <NavbarBrand href="/" style={{ fontWeight:"bold" }}>Puhcho Toys</NavbarBrand>
       <Nav className="mr-auto" navbar>
         <NavItem>
           <NavLink className="navbarButtons" to="/signin">Sign in</NavLink>

@@ -4,7 +4,7 @@ import ToastMessage from './ToastMessage';
 import { getCart, calculatePrice, clearCart, calculateAmount } from '../utils';
 import { withRouter } from 'react-router-dom';
 import Strapi from 'strapi-sdk-javascript/build/main';
-import { Button, Form, FormGroup, Label, Input, Container, Row, Col, Spinner, FormText, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Container, Row, Col, FormText, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './App.css';
 
 const apiURL = process.env.API_URL || 'http://localhost:1337';
@@ -99,31 +99,33 @@ class _CheckoutForm extends React.Component {
         const { toast, toastMessage, cartItems, modal, orderProcessing } = this.state;
 
         return (
-            <Container>
+            <Container className="checkoutContainer">
                 <div>
                     {/* Checkout form heading */}
-                    <h1>Checkout</h1>
+                    <div style={{textAlign:"center"}}>
+                        <h1>Checkout</h1>
+                    </div>
                     {cartItems.length > 0 ? <React.Fragment>
                         {/* User cart */}
                         <div>
-                            <FormText color="darkGray" italic="true">{cartItems.lenght} Items for Checkout</FormText>
+                            <FormText color="darkGray" italic="true" style={{textAlign:"center"}}>{cartItems.lenght} Items for Checkout</FormText>
                             <div padding={2}>
                                 {cartItems.map(item => (
                                     <div key={item._id} padding={1}>
-                                        <FormText color="midnight" style={{fontSize:"medium"}}>
+                                        <FormText color="midnight" style={{fontSize:"medium", textAlign:"center"}}>
                                             {item.name} x {item.quantity} - ${item.quantity} * {item.price}
                                         </FormText>
                                     </div>
                                 ))}
                             </div>
-                                <FormText bold="true" style={{fontSize:"large", fontWeight:"bolder"}}>Total Amount: {calculatePrice(cartItems)}</FormText>
+                                <FormText bold="true" style={{fontSize:"large", fontWeight:"bolder", textAlign:"center"}}>Total Amount: {calculatePrice(cartItems)}</FormText>
                         </div>
                 {/* Checkout form */}
-                <Form onSubmit={this.handleConfirmOrder} className="checkoutForm">
+                <Form onSubmit={this.handleConfirmOrder} style={{marginBottom:"-320px"}}>
                     <Row form>
                         <Col md={12}>
                             <FormGroup>
-                                <Label for="address">Address</Label>
+                                {/* <Label for="address">Address</Label> */}
                                 <Input type="text" name="address" id="address" placeholder="Shipping address" onChange={this.onChange}/>
                             </FormGroup>
                         </Col>
@@ -131,13 +133,13 @@ class _CheckoutForm extends React.Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="postalCode">Postal Code</Label>
+                                {/* <Label for="postalCode">Postal Code</Label> */}
                                 <Input type="text" name="postalCode" id="postalCode" placeholder="Postal Code" onChange={this.onChange}/>
                             </FormGroup>
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="city">City of Residence</Label>
+                                {/* <Label for="city">City of Residence</Label> */}
                                 <Input type="text" name="city" id="city" placeholder="City of Residence" onChange={this.onChange}/>
                             </FormGroup>
                         </Col>
@@ -145,7 +147,7 @@ class _CheckoutForm extends React.Component {
                     <Row form>
                         <Col md={12}>
                             <FormGroup>
-                                <Label for="confirmationEmailAddress">Confirmation Email Address</Label>
+                                {/* <Label for="confirmationEmailAddress">Confirmation Email Address</Label> */}
                                 <Input type="email" name="confirmationEmailAddress" id="confirmationEmailAddress" placeholder="Confirmation Email Address" onChange={this.onChange}/>
                             </FormGroup>
                         </Col>
@@ -195,12 +197,6 @@ const ConfirmationModal = (props ) => {
             <FormText style={{fontWeight:"bold", fontSize:"large"}}>
                 Total: {calculatePrice(props.cartItems)}
             </FormText>
-            {/* <Spinner
-                color="primary"
-                show={orderProcessing}
-            >
-            </Spinner>
-			{orderProcessing && <FormText align="center" italic="true">Submitting order...</FormText>} */}
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={props.handleSubmitOrder}>Confirm</Button>{' '}

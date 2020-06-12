@@ -4,6 +4,7 @@ import './App.css';
 import Strapi from 'strapi-sdk-javascript/build/main';
 import { Link } from 'react-router-dom';
 import Loader from './Loader';
+import './App.css';
 
 import {
   Card, CardImg, CardBody,
@@ -83,7 +84,7 @@ render() {
   const { searchTerm, loadingToys, brands } = this.state;
 
   return (
-    <Container>
+    <Container style={{marginBottom:"-200px"}}>
       {/* Brands search field */}
       <Box display="flex" justifyContent="center" marginTop={4} marginBottom={4}>
         <SearchField
@@ -91,7 +92,7 @@ render() {
           accessibilityLabel="Toys Search Field"
           onChange={this.handleChange}
           value={searchTerm}
-          placeholder="Search Toys"
+          placeholder="Search Brands"
         >
         </SearchField>
         <Box margin={2}>
@@ -107,13 +108,13 @@ render() {
       <Container>
        <Row>
         {brands.map(brand => ( 
-        <Col xs="4" key={brand._id}>  
+        <Col xs="3" key={brand._id}>  
         <Card> 
           <CardImg top width="100%" src={`${apiURL}${brand.image.url}`} alt="Card image cap" />
-          <CardBody>
-            <CardTitle>{brand.name}</CardTitle>
-            <CardSubtitle>{brand.description}</CardSubtitle>
-            <Button outline color="primary">
+          <CardBody className="toys-card"> 
+            <CardTitle style={{fontWeight:"bold", fontSize:"20px", textAlign:"center"}}>{brand.name}</CardTitle>
+            <CardSubtitle style={{fontSize:"14px"}}>{brand.description}</CardSubtitle>
+            <Button outline color="primary" style={{marginTop:"10px"}}>
               <Link to={`/${brand._id}`} >See toys</Link>
             </Button>
           </CardBody>
@@ -122,10 +123,6 @@ render() {
         ))}
       </Row>
       </Container>
-      {/* <Spinner 
-        show={loadingToys}
-        accessibilityLabel="Loading Spinner">
-      </Spinner> */}
       <Loader show={loadingToys}></Loader>
     </Container>
   );

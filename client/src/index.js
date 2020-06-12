@@ -12,6 +12,8 @@ import Signup from './components/Signup';
 import Checkout from './components/Checkout';
 import Navbar from './components/Navbar';
 import Toys from './components/Toys';
+import Footer from './components/footer/Footer';
+import About from './components/about/About';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -35,6 +37,8 @@ const Root = () => (
           <PrivateRoute component={Checkout} path="/checkout" ></PrivateRoute>
           <Route component={Toys} path="/:brandId"></Route>
         </Switch>
+        <Route component={About} path="/about"></Route>
+      <Footer></Footer>
     </React.Fragment>
   </Router>
 )

@@ -2,10 +2,10 @@ const CART_KEY = 'cart';
 const TOKEN_KEY = 'jwt';
 
 export const calculatePrice = items => {
-    return `$${items
+    return `${items
         .reduce((acc, item) => acc + item.quantity * item.price, 0)
         .toFixed(2)
-    }`
+    }dkk`
 }
 
 export const calculateAmount = items => {

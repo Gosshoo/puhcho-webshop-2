@@ -7,7 +7,7 @@ import { calculatePrice, setCart, getCart } from '../utils';
 
 import {
   Card, CardImg, CardBody,
-  CardTitle, CardSubtitle, Button, Row, Col, Container
+  CardTitle, Button, Row, Col, Container, CardText
 } from 'reactstrap';
 
 const apiURL = process.env.API_URL || 'http://localhost:1337';
@@ -82,14 +82,18 @@ deleteItemFromCart = itemToDeleteId => {
       const { brand, toys, cartItems, loadingToys } = this.state;
 
         return (
-          <Container>
+          <Container style={{marginBottom:"-200px"}}>
                 {/* User cart */}
+                <div className="cart">
                 <Box
                   alignSelf="end"
                   marginTop={2}
                   marginLeft={8}
+                  color="white"
+                  rounding="pill"
+                  maxWidth={600}
                 >
-                  <Mask shape="rounded" wash>
+                  <Mask >
                     <Box
                       display="flex"
                       direction="column"
@@ -136,7 +140,7 @@ deleteItemFromCart = itemToDeleteId => {
                               <Text color="red">Please select some items</Text>
                             )}
                           </Box>
-                            <Text size="lg">Total: {calculatePrice(cartItems)}</Text>
+                          <Text size="lg" weight="bold">Total: {calculatePrice(cartItems)}</Text>
                           <Text>
                             <Link to="/checkout">Checkout</Link>
                           </Text>
@@ -146,26 +150,29 @@ deleteItemFromCart = itemToDeleteId => {
 
                   </Mask>
                 </Box>
+                </div>
             {/* Toys heading */}
-            <Box margin={2}>
-              <Heading color="orchid">{brand}</Heading>
-            </Box>
+            <div>
+              <h1 style={{textAlign:"center", color:"blue", fontSize:"50px"}}>{brand}</h1>
+            </div>
             {/* Toys section */}
             <Container>
               <Row>
                 {toys.map(toy => (
-                    <Col xs="4" key={toy._id}>  
-                    <Card> 
-                      <CardImg top width="100%" src={`${apiURL}${toy.image.url}`} alt="Card image cap" />
-                      <CardBody>
-                        <CardTitle>{toy.name}</CardTitle>
-                        <CardSubtitle>{toy.description}</CardSubtitle>
-                        <Button onClick={() => this.addToCart(toy)} 
-                                outline color="primary">Add to Cart
-                        </Button>
-                      </CardBody>
-                    </Card>
-                    </Col>
+                  <Col xs="3" key={toy._id}>    
+                  <Card> 
+                    <CardImg top width="100%" src={`${apiURL}${toy.image.url}`} alt="Card image cap" />
+                    <CardBody>
+                      <CardTitle style={{fontWeight:"bold", fontSize:"20px", textAlign:"center"}}>{toy.name}</CardTitle>
+                      <CardText>{toy.description}</CardText>
+                      <CardTitle style={{fontWeight:"bolder", fontSize:"16", marginTop:"5px", color:"red"}}>Price: {toy.price}dkk</CardTitle>
+                      <Button onClick={() => this.addToCart(toy)} 
+                              outline color="primary">Add to Cart
+                      </Button>
+                    </CardBody>
+                  </Card>
+                  <br/>
+                  </Col>
                 ))}
               </Row>
             </Container>

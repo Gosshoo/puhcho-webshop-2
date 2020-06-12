@@ -50,7 +50,7 @@ form input {
 .StripeElement {
   display: block;
   margin: 10px 0 20px 0;
-  max-width: 500px;
+  max-width: 600px;
   padding: 10px 14px;
   font-size: 1em;
   font-family: monospace;
@@ -69,7 +69,7 @@ form input {
 }
 
 .navbar {
-  background-color: darkturquoise;
+  background-color: burlywood;
 }
 
 .signoutButton {
@@ -85,6 +85,33 @@ form input {
   font-style: normal;
 }
 
-.checkoutForm {
-  max-width: 700px;
+.checkoutContainer {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 390px;
+}
+
+.auth-btn {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.auth-cards {
+  max-width: 600px; 
+  margin-left: auto;
+  margin-right: auto;
+  border-radius:50px; 
+  margin-top: 33px;
+}
+
+.form-inputs {
+  padding-left: 20px; 
+  padding-right: 20px;
+}
+
+.cart {
+  padding-left: 230px;
 }
